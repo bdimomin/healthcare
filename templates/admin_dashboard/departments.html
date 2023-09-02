@@ -1,0 +1,62 @@
+
+
+{% extends 'admin_dashboard/base.html' %}
+{% block title %}Departments{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" class="form-control" id="department" name="name" placeholder="Enter Department">
+          </div>
+       </div>
+
+        
+    </div>
+       
+    <button type="submit" class="btn btn-primary">Add Department</button>
+</form>
+<br>
+<br>
+{% if departments %}
+<div class="jumbotron">
+
+  <p class="lead text-center">Department List</p>
+  <hr class="my-4">
+
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">SL</th>
+        <th scope="col">Department Name</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+        {% for department in departments %}
+      <tr>
+        <th scope="row">{{department.id}}</th>
+        <td>{{department.name}}</td>
+     
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h3 class="text-center alert alert-danger" role="alert">No Department Found</h3>
+  {% endif %}
+
+</div>
+
+{% endblock content %}
+
+
+

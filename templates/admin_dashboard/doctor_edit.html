@@ -1,0 +1,49 @@
+
+
+{% extends 'admin_dashboard/base.html' %}
+{% block title %}Doctor list{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="jumbotron">
+
+  <p class="lead text-center">Doctor Status</p>
+  <hr class="my-4">
+
+  {% if doctor %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6 offset-md-2">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="doctor_status">Select Status</label>
+                    <select class="form-control" id="doctor_status" name="doctor_status">
+                      <option value="0" selected>Inactive</option>
+                      <option value="1">Active</option>
+
+                    </select>
+                  </div>
+
+           </div>
+           <button type="submit" class="btn btn-primary">Update Status</button>
+       </div>
+    </div>
+       
+    
+</form>
+<br>
+<br> 
+
+</div>
+
+{% endif %}
+
+{% endblock content %}
+
+
+

@@ -1,0 +1,61 @@
+{% extends 'frontpage/base.html' %}
+
+{% comment %} {% block title %}Patient Login{% endblock title %} {% endcomment %}
+{% load crispy_forms_tags %}
+
+{% comment %} {% block headline %}Patient Login{% endblock headline %} {% endcomment %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">  
+            <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+            </div>
+        </div>
+        
+        <div class="col-md-4"></div>
+
+        
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+              </div>
+        </div>
+       
+        <div class="col-md-4"></div>
+ 
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2"> 
+            {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}"/>
+            {% endif %}
+            
+            <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button>
+        
+        
+        
+        </div>
+        <div class="col-md-5"></div>
+    </div>
+    {% for error in login_form.errors %}
+    <p style="color:red">{{error}}</p>
+    {% endfor %}
+</form>
+
+
+
+{% endblock content %}

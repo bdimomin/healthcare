@@ -1,0 +1,42 @@
+{% extends 'frontpage/base.html' %}
+
+{% block title %}Patient Registration{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+{% block headline %}Patient Registration{% endblock headline %}
+
+{% block content %}
+<br>
+<br>
+<h3 class="text-center">Patient Registrarion Form</h3>
+<br>
+<div class="container">
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">{{ form.name|as_crispy_field }}</div>
+        <div class="col-md-4">{{ form.email|as_crispy_field }}</div>
+        <div class="col-md-4">{{ form.phone|as_crispy_field }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">{{ form.password1|as_crispy_field }}</div>
+        <div class="col-md-6">{{ form.password2|as_crispy_field }}</div>
+    </div> 
+
+
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-3"> <button type="submit" class="btn btn-primary btn-block btn-lg">Save Patient</button></div>
+        <div class="col-md-4"></div>
+    </div>
+    {% for error in register_form.errors %}
+    <p style="color:red">{{error}}</p>
+    {% endfor %}
+</form>
+</div>
+
+
+
+
+{% endblock content %}

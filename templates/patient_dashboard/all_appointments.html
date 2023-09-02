@@ -1,0 +1,54 @@
+{% extends 'patient_dashboard/base.html' %}
+{% block title %}Appointment List{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+
+
+
+{% block content %}
+
+
+
+{% if appointments %}
+<h3 class="text-center">Appointment List</h3>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Serial Number</th>
+        <th scope="col">Patient Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date</th>
+        <th scope="col">Doctor's Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for appointment in appointments %}
+      <tr>
+        <th scope="row">{{appointment.serial_number}}</th>
+        <td>{{appointment.patient_name}}</td>
+        <td>{{appointment.patient_age}}</td>
+        <td>{{appointment.patient_email}} </td>
+        <td>{{appointment.appoinment_date}}</td>
+        <td>{{appointment.doctor_name.name}}</td>
+        <td>
+          {% if today < appointment.appoinment_date %}
+          
+          <a href="{% url 'cancel_appointment' appointment.id %}" class="btn btn-danger">Cancel</a>
+
+          {% else %}
+          <a href="{% url 'delete_appointment' appointment.id%}" class="btn btn-danger">Delete</a>
+          {% endif %}
+        </td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h3 class="text-center alert alert-danger" role="alert">No Appointment Found</h3>
+  {% endif %}
+
+{% endblock content %}

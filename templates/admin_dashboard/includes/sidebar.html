@@ -1,0 +1,51 @@
+{% load static %}
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+  </div>
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <a href="#" class="nav-link">
+        <div class="nav-profile-image">
+          <span class="login-status online"></span>
+          <!--change to offline or busy as needed-->
+        </div>
+        <div class="nav-profile-text d-flex flex-column pr-3">
+          <span class="font-weight-medium mb-2">{{user.name}}</span>
+          
+        </div>
+        
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'homepage' %}">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    
+
+  
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'date_doc_appointment' %}">
+        <i class="mdi mdi-contacts menu-icon"></i>
+        <span class="menu-title">Appointment List</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'listDoctor' %}">
+        <i class="mdi mdi-contacts menu-icon"></i>
+        <span class="menu-title">Doctor List</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'departments' %}">
+        <i class="mdi mdi-contacts menu-icon"></i>
+        <span class="menu-title">Departments</span>
+      </a>
+    </li>
+
+  
+  </ul>
+</nav>

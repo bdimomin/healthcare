@@ -1,0 +1,39 @@
+{% extends 'frontpage/base.html' %}
+
+{% comment %} {% block title %}Patient Login{% endblock title %} {% endcomment %}
+{% load crispy_forms_tags %}
+
+{% comment %} {% block headline %}Patient Login{% endblock headline %} {% endcomment %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.email|as_crispy_field }}</div>
+        <div class="col-md-4"></div>
+
+        
+    </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">{{ form.password|as_crispy_field }}</div>
+        <div class="col-md-4"></div>
+ 
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-2"> <button type="submit" class="btn btn-primary btn-block btn-lg">Login</button></div>
+        <div class="col-md-5"></div>
+    </div>
+    {% for error in login_form.errors %}
+    <p style="color:red">{{error}}</p>
+    {% endfor %}
+</form>
+
+
+
+{% endblock content %}

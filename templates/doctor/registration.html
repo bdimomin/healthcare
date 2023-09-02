@@ -1,0 +1,41 @@
+{% extends 'frontpage/base.html' %}
+
+{% comment %} {% block title %}Patient Registration{% endblock title %} {% endcomment %}
+
+{% load crispy_forms_tags %}
+{% comment %} {% block headline %}Patient Registration{% endblock headline %} {% endcomment %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<div class="container">
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">{{ form.bmdc_registration_number|as_crispy_field }}</div>
+        <div class="col-md-4">{{ form.name|as_crispy_field }}</div>
+        <div class="col-md-4">{{ form.email|as_crispy_field }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form.phone|as_crispy_field }}</div>
+        <div class="col-md-4">{{ form.fees|as_crispy_field }}</div>
+        <div class="col-md-4">{{ form.department|as_crispy_field }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form.about|as_crispy_field }}</div>
+        <div class="col-md-4">{{ form.doc_image|as_crispy_field }}</div>
+        <div class="col-md-4">{{ form.password1|as_crispy_field }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">{{ form.password2|as_crispy_field }}</div>
+        <div class="col-md-3"> <button type="submit" class="btn btn-primary btn-block btn-lg">Save Doctor</button></div>
+        <div class="col-md-4"></div>
+    </div>
+    {% for error in register_form.errors %}
+    <p style="color:red">{{error}}</p>
+    {% endfor %}
+</form>
+</div>
+
+{% endblock content %}

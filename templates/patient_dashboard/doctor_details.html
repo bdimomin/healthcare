@@ -1,0 +1,34 @@
+
+
+<div class="container">
+  <div class="row">
+    {% for details in doctor %}
+   
+    <div class="col-md-8">
+      
+      <h3>  About Doctor </h3>
+      <hr>
+      <p>BMDC Registratio: {{ details.bmdc_registration_number}}</p>
+      <hr>
+      <p>Name : {{ user.name}}</p>
+      <hr>
+      <p>Department : {{ details.department}}</p>
+
+      <hr>
+      <p>Fees : {{ details.fees}}</p>
+
+      <hr>
+      <p>About  : {{ details.about}}</p>
+    
+     
+    </div>
+
+    <div class="col-md-3">
+      <img class="doctor_image" src="{{details.doc_image.url}}" alt="{{ details.name}}" >
+    </div>
+
+    {% endfor %}
+  </div>
+</div>
+
+

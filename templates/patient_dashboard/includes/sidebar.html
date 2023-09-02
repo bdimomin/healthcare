@@ -1,0 +1,58 @@
+{% load static %}
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+  </div>
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <a href="#" class="nav-link">
+        <div class="nav-profile-image">
+          <span class="login-status online"></span>
+          <!--change to offline or busy as needed-->
+        </div>
+        <div class="nav-profile-text d-flex flex-column pr-3">
+          <span class="font-weight-medium mb-2">{{user.name}}</span>
+          
+        </div>
+        
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'dashboard' %}">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    
+
+    {% if request.user.is_superuser %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'date_doc_appointment' %}">
+        <i class="mdi mdi-contacts menu-icon"></i>
+        <span class="menu-title">Appointment List</span>
+      </a>
+    </li>
+
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <i class="mdi mdi-crosshairs-gps menu-icon"></i>
+        <span class="menu-title">Appoinments</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'appointment' %}">New Appoinment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'appointment_list' %}">All Appoinments</a>
+          </li>
+          
+        </ul>
+      </div>
+    </li>
+
+    {% endif %}
+  
+  </ul>
+</nav>

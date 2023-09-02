@@ -1,0 +1,54 @@
+
+
+{% extends 'admin_dashboard/base.html' %}
+{% block title %}Doctor list{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="jumbotron">
+
+  <p class="lead text-center">Doctor List</p>
+  <hr class="my-4">
+
+{% if doctors %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">DMDC Reg No.</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Fees</th>
+        <th scope="col">Department</th>
+        <th scope="col">Status</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for doctor in doctors %}
+      <tr>
+        <td scope="row">{{doctor.bmdc_registration_number}}</td>
+        <td>{{doctor.user.name}}</td>
+        <td>{{doctor.user.email}}</td>
+        <td>{{doctor.user.phone}}</td>
+        <td>{{doctor.fees}}</td>
+        <td>{{doctor.department}}</td>
+        <td>{{doctor.user.is_active}}</td>
+        <td><a href="" class="btn btn-danger">Delete</a></td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h3 class="text-center alert alert-danger" role="alert">No Doctor Found</h3>
+  {% endif %}
+
+</div>
+
+{% endblock content %}
+
+
+

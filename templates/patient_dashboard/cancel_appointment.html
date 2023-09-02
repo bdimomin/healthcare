@@ -1,0 +1,37 @@
+{% extends 'patient_dashboard/base.html' %}
+{% block title %}Appointment List{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+
+
+
+{% block content %}
+
+
+
+
+<h3 class="text-center">Appointment List</h3>
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-6 offset-md-2">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="appointment_status">Cancel Appointment</label>
+                    <select class="form-control" id="appointment_status" name="appointment_status">
+                      <option value="1">Cancel</option>
+
+                    </select>
+                  </div>
+
+           </div>
+           <button type="submit" class="btn btn-primary">Update Status</button>
+       </div>
+    </div>
+       
+    
+</form>
+
+
+{% endblock content %}

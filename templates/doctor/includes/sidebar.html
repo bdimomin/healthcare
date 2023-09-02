@@ -1,0 +1,48 @@
+{% load static %}
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <div class="text-center sidebar-brand-wrapper d-flex align-items-center">
+  </div>
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <a href="#" class="nav-link">
+        <div class="nav-profile-image">
+          <span class="login-status online"></span>
+          <!--change to offline or busy as needed-->
+        </div>
+        <div class="nav-profile-text d-flex flex-column pr-3">
+          <span class="font-weight-medium mb-2">{{user.name}}</span>
+          
+        </div>
+        
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'doctor_home' %}">
+        <i class="mdi mdi-home menu-icon"></i>
+        <span class="menu-title">Dashboard</span>
+      </a>
+    </li>
+    
+
+    
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'appointment_list_view' user.id %}">
+        <i class="mdi mdi-contacts menu-icon"></i>
+        <span class="menu-title">Appointment List</span>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'Profile_details'%}">
+        <i class="mdi mdi-contacts menu-icon"></i>
+        <span class="menu-title">Educational Details</span>
+      </a>
+    </li>
+
+
+    
+
+   
+  
+  </ul>
+</nav>

@@ -1,0 +1,77 @@
+
+
+{% extends 'admin_dashboard/base.html' %}
+{% block title %}Date Doc Wise Appointment{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+               <label for="name">Doctor</label>
+               <select class="form-control" name="doctor_id">
+                <option>Please Select Doctor</option>
+                {% if doctors %}
+                {% for doctor in doctors %}
+                <option value="{{doctor.id}}">{{doctor.name}}</option>
+                {% endfor %}
+                {% endif %}
+              </select>
+           </div>
+       </div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+               <label for="name">Date</label>
+               <input type="date" class="form-control" name="date">
+           </div>
+       </div>
+    </div>
+       
+    <button type="submit" class="btn btn-primary">Get the list</button>
+</form>
+<br>
+<br>
+<div class="jumbotron">
+
+  <p class="lead text-center">Date & Doctor Wise Serial List</p>
+  <hr class="my-4">
+
+{% if appointments %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Serial Number</th>
+        <th scope="col">Patient Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for appointment in appointments %}
+      <tr>
+        <th scope="row">{{appointment.serial_number}}</th>
+        <td>{{appointment.patient_name}}</td>
+        <td>{{appointment.patient_age}}</td>
+        <td>{{appointment.patient_gender}}</td>
+        <td></td>
+      </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <h3 class="text-center alert alert-danger" role="alert">No Appointment Found</h3>
+  {% endif %}
+
+</div>
+
+{% endblock content %}
+
+
+

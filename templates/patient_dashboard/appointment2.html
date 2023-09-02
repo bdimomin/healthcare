@@ -1,0 +1,86 @@
+{% extends 'patient_dashboard/base.html' %}
+{% block title %}Appointment{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-3">
+             <div class="form-group">
+                <label for="name">Patient Name</label>
+                <input type="hidden" class="form-control" name="patient_id" value="{{user.id}}">
+                <input type="text" class="form-control" name="patient_name">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+               <label for="age">Age</label>
+               <input type="number" class="form-control" name="patient_age">
+           </div>
+       </div>
+        <div class="col-md-3">
+            <div class="form-group">
+               <label for="email">Email</label>
+               <input type="email" class="form-control" name="patient_email">
+           </div>
+       </div>
+
+       <div class="col-md-3">
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="phone" class="form-control" name="patient_phone" placeholder="01xxxxxxx">
+      </div>
+    </div>
+
+
+       
+        
+        
+    </div>
+
+    <div class="row">
+       
+        <div class="col-md-4">
+            <div class="form-group">
+               <label for="name">Gender</label>
+               <select class="form-control" name="patient_gender">
+                <option>Please Select the Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+           </div>
+       </div>
+        <div class="col-md-4">
+            <div class="form-group">
+               <label for="name">Doctor</label>
+               <select class="form-control" name="doctor_id" id="doctor_id" readonly>
+                {% if doctor %}
+                
+                <option value="{{doctor.id}}" selected>{{doctor.name}}</option>
+                
+                {% endif %}
+
+              </select>
+           </div>
+       </div>
+
+       <div class="col-md-4">
+        <div class="form-group">
+            <label for="name">Appointment Date</label>
+           <input type="date" class="form-control" name="date">
+       </div> 
+       
+   </div>
+    </div>
+    <button type="submit" class="btn btn-primary">GET an Appointment</button>
+</form>
+
+
+{% endblock content %}
+
+
+

@@ -1,0 +1,91 @@
+{% extends 'doctor/base.html' %}
+{% block title %}Doctor Profile Details{% endblock title %}
+
+{% load crispy_forms_tags %}
+
+
+
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6">
+                        {{form.degree_title|as_crispy_field}}
+                    </div>
+                    <div class="col-md-6">
+                        {{form.degree_start_year|as_crispy_field}}
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{form.degree_end_year|as_crispy_field}}
+                   </div>
+                    <div class="col-md-6">
+                        {{form.university_name|as_crispy_field}}
+                   </div>
+                  
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{form.details|as_crispy_field}}
+                    </div>
+                    <div class="col-md-6">
+                       
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary">Save Details</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% if details %}
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">SL.</th>
+        <th scope="col">Degree Title</th>
+        <th scope="col">Degree Start date</th>
+        <th scope="col">Degree End date</th>
+        <th scope="col">University Name</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for detail in details %}
+      <tr>
+        <th scope="row">{{forloop.counter}}</th>
+        <td>{{detail.degree_title}}</td>
+        <td>{{detail.degree_start_year}}</td>
+        <td>{{detail.degree_end_year}}</td>
+        <td>{{detail.university_name}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+
+
